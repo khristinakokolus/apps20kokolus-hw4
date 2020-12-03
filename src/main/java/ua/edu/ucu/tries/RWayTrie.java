@@ -7,7 +7,7 @@ import ua.edu.ucu.collections.Queue;
 // implemented using book "Algorithms" 4th Edition
 public class RWayTrie implements Trie {
     private static final int R = 26;
-    private static final int aValue = 97;
+    private static final int DEFAULT_VALUE = 97; // ascii number of a
     private int size = 0;
     private Node root = new Node('\0');
 
@@ -19,7 +19,7 @@ public class RWayTrie implements Trie {
         private Node[] next;
 
         public Node(char character) {
-            this.weight = - 1;
+            this.weight = -1;
             this.character = character;
             this.next = new Node[R];
         }
@@ -31,10 +31,10 @@ public class RWayTrie implements Trie {
         Node current = root;
         for (int i = 0; i < t.weight; i++) {
             char c = t.term.charAt(i);
-            if (current.next[c - aValue] == null) {
-                current.next[c - aValue] = new Node(c);
+            if (current.next[c - DEFAULT_VALUE] == null) {
+                current.next[c - DEFAULT_VALUE] = new Node(c);
             }
-            current = current.next[c - aValue];
+            current = current.next[c - DEFAULT_VALUE];
         }
         size++;
         current.weight = t.weight;
@@ -51,10 +51,10 @@ public class RWayTrie implements Trie {
         Node current = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (current.next[c - aValue] == null) {
+            if (current.next[c - DEFAULT_VALUE] == null) {
                 return null;
             }
-            current = current.next[c - aValue];
+            current = current.next[c - DEFAULT_VALUE];
         }
         return current;
     }
@@ -91,7 +91,7 @@ public class RWayTrie implements Trie {
             queue.enqueue(prefix);
         }
         for (char c = 0; c < R; c++) {
-            collect(word.next[c], prefix + (char) (c + aValue),
+            collect(word.next[c], prefix + (char) (c + DEFAULT_VALUE),
                     queue);
         }
     }

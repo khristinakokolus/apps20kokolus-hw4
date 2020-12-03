@@ -41,8 +41,8 @@ public class PrefixMatches {
 
     public Iterable<String> wordsWithPrefix(String pref) {
         if (pref.length() < 2) {
-            throw new IllegalArgumentException("Inappropriate length " +
-                    "of the prefix.");
+            throw new IllegalArgumentException("Inappropriate length "
+                    + "of the prefix.");
         }
         return trie.wordsWithPrefix(pref);
     }

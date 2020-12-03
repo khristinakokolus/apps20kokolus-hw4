@@ -1,9 +1,10 @@
 package ua.edu.ucu.iterator;
 
+import lombok.Getter;
 import ua.edu.ucu.collections.Queue;
-
-public class WordsContainer implements Container<String>{
-    Queue elements;
+@Getter
+public class WordsContainer implements Container<String> {
+    private Queue elements;
 
     public WordsContainer(Queue queue) {
         this.elements = queue;
@@ -13,11 +14,11 @@ public class WordsContainer implements Container<String>{
     public Iterator getIterator() {
         return new QueueIterator(elements);
     }
-
+    @Getter
     private static class QueueIterator implements Iterator<String> {
-        Queue queue;
+        private Queue queue;
 
-        public QueueIterator(Queue elements) {
+        QueueIterator(Queue elements) {
             this.queue = elements;
         }
 
@@ -28,7 +29,7 @@ public class WordsContainer implements Container<String>{
 
         @Override
         public String next() {
-            return (String)queue.dequeue();
+            return (String) queue.dequeue();
         }
     }
 }
